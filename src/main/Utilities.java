@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class Utilities {
 	public static boolean checkNumber(String number, String value) throws Exception {
-		if(Pattern.matches("[0-9^\\s]+", number)) {
+			if(Pattern.matches("\\d+", number)) {
 			return true;
 		}
 		throw new Exception("*" + value + " must be a number.");

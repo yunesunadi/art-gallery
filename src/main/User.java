@@ -81,7 +81,7 @@ public class User {
 		System.out.println("\nID: " + aw.getId());
 		System.out.println("Name: " + aw.getName());
 		System.out.println("Description: " + aw.getDescription());
-		System.out.println("Price: " + aw.getPrice());
+		System.out.println("Price: " + "$" + aw.getPrice());
 		System.out.println("Type: " + aw.getType());
 		System.out.println("Category: " + aw.getCategory());
 		System.out.println("Artist Name: " + aw.getArtist());
@@ -99,6 +99,12 @@ public class User {
 		System.out.println("\nID: " + oa.getId());
 		System.out.println("Customer Name: " + oa.getCustomer().getName());
 		System.out.println("Artwork Name: " + oa.getArtwork());
-		System.out.println("Ordered Date: " + oa.getOrderDate());		
+		for(Artwork aw: ArtistOperation.artworks) {
+			if(aw.getName().equalsIgnoreCase(oa.getArtwork())) {
+				System.out.println("Price: " + "$" + aw.getPrice());
+				break;
+			}
+		}
+		System.out.println("Ordered Date: " + oa.getOrderDate());
 	}
 }

@@ -23,11 +23,11 @@ public class ArtistOperation extends User implements ArtistInterface {
 		artists.add(a5);
 		
 		Artwork aw1 = new Artwork("AW1", "Musical Rules", "Lorem ipsum dolor sit amet", "1700", "Oil painting", "Painting", "Terry Medhurst", false, false);
-		Artwork aw2 = new Artwork("AW2", "A Walking Penguin", "Lorem ipsum dolor sit amet", "1100", "Animal", "Photography", "Jared Grant", false, false);
+		Artwork aw2 = new Artwork("AW2", "A Walking Penguin", "Lorem ipsum dolor sit amet", "1100", "Animal", "Photography", "Jared Grant", true, false);
 		Artwork aw3 = new Artwork("AW3", "The Oriental Arthur", "Lorem ipsum dolor sit amet", "700", "Watercolor painting", "Painting", "Gabe Campbell", false, false);
-		Artwork aw4 = new Artwork("AW4", "A racing car", "Lorem ipsum dolor sit amet", "900", "Car", "Photography", "Marion Perez", false, false);
+		Artwork aw4 = new Artwork("AW4", "A racing car", "Lorem ipsum dolor sit amet", "900", "Car", "Photography", "Marion Perez", true, false);
 		Artwork aw5 = new Artwork("AW5", "Knight Foundation", "Lorem ipsum dolor sit amet", "1500", "Portrait painting", "Painting", "Charlie Collins", false, false);
-		Artwork aw6 = new Artwork("AW6", "Waterfall", "Lorem ipsum dolor sit amet", "1000", "Nature", "Photography", "Jared Grant", false, false);
+		Artwork aw6 = new Artwork("AW6", "Waterfall", "Lorem ipsum dolor sit amet", "1000", "Nature", "Photography", "Jared Grant", true, false);
 		Artwork aw7 = new Artwork("AW7", "Difficult Nature", "Lorem ipsum dolor sit amet", "750", "Landscape painting", "Painting", "Gabe Campbell", false, true);
 		artworks.add(aw1);
 		artworks.add(aw2);
@@ -267,9 +267,9 @@ public class ArtistOperation extends User implements ArtistInterface {
 				for(Artwork aw: artworks) {
 					if(a.getName().equalsIgnoreCase(aw.getArtist()) && !aw.isRemoved()) {
 						aw.setRemoved(true);
-						status = true;
 					}
 				}
+				status = true;
 			}
 		}
 		
@@ -321,22 +321,6 @@ public class ArtistOperation extends User implements ArtistInterface {
 			}
 		}
 		return type;
-	}
-	
-	public String enterArtistName(String artistName, boolean artistNameStatus) {
-		while(!artistNameStatus) {
-			try {
-				System.out.print("Enter artist name: ");
-				artistName = sc.nextLine();
-				
-				if (Utilities.checkString(artistName, "Artist name")) {
-					artistNameStatus = true;
-				}
-			} catch(Exception ex) {
-				System.out.println(ex.getMessage());
-			}
-		}
-		return artistName;
 	}
 	
 	public String enterCategory(String category, boolean categoryStatus) {
@@ -409,7 +393,7 @@ public class ArtistOperation extends User implements ArtistInterface {
 			category = enterCategory(category, categoryStatus);
 			
 			while(!isFound) {
-				artistName = enterArtistName(artistName, artistNameStatus);
+				artistName = enterName(artistName, artistNameStatus, "artist");
 			
 				for(Artist a : artists) {
 					if(artistName.equalsIgnoreCase(a.getName())) {
@@ -527,7 +511,7 @@ public class ArtistOperation extends User implements ArtistInterface {
 		}
 		
 		if(isFound) {
-			System.out.println("\nTotal Price: " + total);
+			System.out.println("\nTotal Price: " + "$" + total);
 		} else {
 			System.out.println("\n*Artist name not found.");
 		}

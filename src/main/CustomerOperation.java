@@ -7,11 +7,23 @@ import java.util.InputMismatchException;
 import java.util.LinkedList;
 
 public class CustomerOperation extends User implements CustomerInterface {
-	int customerCount = 0, orderedArtworkCount = 0;
+	int customerCount = 2, orderedArtworkCount = 3;
 	
 	LinkedList<Artist> artists = ArtistOperation.artists;
 	LinkedList<Artwork> artworks = ArtistOperation.artworks;
 	static LinkedList<OrderedArtwork> orderedArtworks = new LinkedList<>();
+
+	public CustomerOperation() {
+		Customer c1 = new Customer("C1", "Rayla", "rayla@example.com", "6899 Dane St", "09375638265");
+		Customer c2 = new Customer("C2", "Tommy", "tommy@gmail.com", "9495 Frances Ct", "09657483892");
+		
+		OrderedArtwork oa1 = new OrderedArtwork("OA1", c1, "A Walking Penguin", new Date().toString());
+		OrderedArtwork oa2 = new OrderedArtwork("OA2", c2, "A racing car", new Date().toString());
+		OrderedArtwork oa3 = new OrderedArtwork("OA3", c1, "Waterfall", new Date().toString());
+		orderedArtworks.add(oa1);
+		orderedArtworks.add(oa2);
+		orderedArtworks.add(oa3);
+	}
 	
 	@Override
 	public void welcome() {	
@@ -261,7 +273,7 @@ public class CustomerOperation extends User implements CustomerInterface {
 		}
 		
 		if(isFound) {
-			System.out.println("\nTotal Price = " + total);
+			System.out.println("\nTotal Price: " + "$" + total);
 		} else {
 			System.out.println("*Customer name not found.");
 		}
